@@ -32,7 +32,7 @@ class ExpressionInputField<T> extends StatefulWidget {
     super.key,
     required this.evaluator,
     this.evalToString,
-    this.options,
+    this.grammarParser,
     this.controller,
     this.focusNode,
     this.initialValue,
@@ -63,8 +63,8 @@ class ExpressionInputField<T> extends StatefulWidget {
   /// (e.g. `4` instead of `4.0`), and all other values use `.toString()`.
   final String Function(T eval)? evalToString;
 
-  /// Optional parser options that control grammar parsing behavior.
-  final ParserOptions? options;
+  /// Optional grammarParser to override the default.
+  final GrammarParser? grammarParser;
 
   /// An optional external [TextEditingController].
   ///
@@ -127,7 +127,7 @@ class ExpressionInputField<T> extends StatefulWidget {
 }
 
 class _ExpressionInputFieldState<T> extends State<ExpressionInputField<T>> {
-  late final parser = GrammarParser(widget.options ?? const ParserOptions());
+  late final parser = widget.grammarParser ?? GrammarParser();
 
   late final TextEditingController _controller =
       widget.controller ??
