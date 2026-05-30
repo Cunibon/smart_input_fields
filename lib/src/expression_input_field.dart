@@ -198,7 +198,10 @@ class _ExpressionInputFieldState<T> extends State<ExpressionInputField<T>> {
       maxLines: widget.maxLines,
       minLines: widget.minLines,
       autovalidateMode: widget.autovalidateMode,
-      validator: widget.validator,
+      validator: (_) {
+        parseInput();
+        return widget.validator?.call(_controller.text);
+      },
       onEditingComplete: () {
         parseInput();
         widget.onEditingComplete?.call(_controller.text);

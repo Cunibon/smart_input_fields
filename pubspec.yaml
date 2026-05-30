@@ -1,6 +1,6 @@
 name: smart_input_fields
 description: "A input field that auto evaluates math expressions into numbers."
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/Cunibon/smart_input_fields
 
 environment:
